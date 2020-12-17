@@ -1,4 +1,4 @@
-from bke import MLAgent, is_winner, opponent, train, save
+from bke import MLAgent, is_winner, opponent, train, load, start
  
  
 class MyAgent(MLAgent):
@@ -13,6 +13,7 @@ class MyAgent(MLAgent):
     
  
 my_agent = MyAgent()
-train(my_agent, 3000)
-save(my_agent, 'MyAgent_3000')
-
+my_agent = load('MyAgent_3000')
+my_agent.learning = False
+ 
+start(player_x=my_agent)
