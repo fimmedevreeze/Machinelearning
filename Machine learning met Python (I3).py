@@ -1,4 +1,6 @@
-from bke import MLAgent, is_winner, opponent, load, validate, RandomAgent, plot_validation
+import random
+ 
+from bke import *
  
  
 class MyAgent(MLAgent):
@@ -12,11 +14,15 @@ class MyAgent(MLAgent):
         return reward
     
     
-my_agent = load('MyAgent_3000')
-my_agent.learning = False
+random.seed(1)
  
-validation_agent = RandomAgent()
+my_agent = MyAgent()
+random_agent = RandomAgent()
+my_agent = MyAgent(alpha=0.8, epsilon=0.2)
  
-validation_result = validate(agent_x=my_agent, agent_o=validation_agent, iterations=100)
- 
-plot_validation(validation_result)
+train_and_plot(
+    agent=my_agent,
+    validation_agent=random_agent,
+    iterations=50,
+    trainings=100,
+    validations=1000)
